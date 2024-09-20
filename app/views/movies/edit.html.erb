@@ -9,7 +9,7 @@
 
     <div>
       <%= form.label :rating %><br>
-      <%= form.select :rating, Movie::RATINGS %>
+      <%= form.select :rating, ['G', 'PG', 'PG-13', 'R', 'NC-17'] %>
     </div>
 
     <div>
@@ -24,4 +24,3 @@
 </div>
 
 <%= link_to 'Back to Movie', movie_path(@movie), class: 'btn' %>
-s
