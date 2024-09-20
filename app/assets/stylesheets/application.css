@@ -82,4 +82,8 @@ table {
   .btn-delete:hover {
     background-color: #c9302c;
   }
+  .sorted {
+    font-weight: bold;
+    color: #0056b3;
+  }
   
