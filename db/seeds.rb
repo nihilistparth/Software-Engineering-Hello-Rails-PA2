@@ -9,18 +9,23 @@
 #   end
 # Seed the RottenPotatoes DB with some movies.
 more_movies = [
-  {:title => 'My Neighbor Totoro', :rating => 'G',
-    :release_date => '16-Apr-1988'},
-  {:title => 'Green Book', :rating => 'PG-13',
-    :release_date => '16-Nov-2018'},
-  {:title => 'Parasite', :rating => 'R',
-    :release_date => '30-May-2019'},
-  {:title => 'Nomadland', :rating => 'R',
-    :release_date => '19-Feb-2021'},
-  {:title => 'CODA', :rating => 'PG-13',
-    :release_date => '13-Aug-2021'}
+  { title: 'My Neighbor Totoro', rating: 'G', release_date: '16-Apr-1988' },
+  { title: 'Green Book', rating: 'PG-13', release_date: '16-Nov-2018' },
+  { title: 'Parasite', rating: 'R', release_date: '30-May-2019' },
+  { title: 'Nomadland', rating: 'R', release_date: '19-Feb-2021' },
+  { title: 'CODA', rating: 'PG-13', release_date: '13-Aug-2021' },
+  { title: 'Fight Club', rating: 'R', release_date: '15-Oct-1999' },
+  { title: 'The Dark Knight', rating: 'PG-13', release_date: '18-Jul-2008' },
+  { title: 'Interstellar', rating: 'PG-13', release_date: '07-Nov-2014' },
+  { title: 'Inception', rating: 'PG-13', release_date: '16-Jul-2010' },
+  { title: 'The Matrix', rating: 'R', release_date: '31-Mar-1999' },
+  { title: 'The Godfather', rating: 'R', release_date: '24-Mar-1972' }
 ]
 
-more_movies.each do |movie|
-  Movie.create!(movie)
+more_movies.each do |movie_data|
+  Movie.find_or_create_by!(title: movie_data[:title]) do |movie|
+    movie.rating = movie_data[:rating]
+    movie.release_date = movie_data[:release_date]
+  end
 end
+
