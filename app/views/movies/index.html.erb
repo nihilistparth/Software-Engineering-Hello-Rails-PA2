@@ -1,37 +1,24 @@
-<h1>All Movies</h1>
-
 <table>
   <thead>
     <tr>
-      <th class="<%= sort_class('title') %>">
-        <%= sortable "title", "Title" %> <%= sort_indicator('title') %>
-      </th>
-      <th class="<%= sort_class('rating') %>">
-        <%= sortable "rating", "Rating" %> <%= sort_indicator('rating') %>
-      </th>
-      <th class="<%= sort_class('release_date') %>">
-        <%= sortable "release_date", "Release Date" %> <%= sort_indicator('release_date') %>
-      </th>
+      <th>Title</th>
+      <th>Rating</th>
+      <th>Release Date</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
-  <% @movies.each do |movie| %>
-    <tr>
-      <td><%= link_to movie.title, movie_path(movie) %></td>
-      <td><%= movie.rating %></td>
-      <td><%= movie.release_date %></td>
-      <td><%= link_to 'Edit', edit_movie_path(movie), class: 'btn' %> | 
-          <%= link_to 'Delete', movie, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-delete' %>
-      </td>
-    </tr>
-  <% end %>
-</tbody>
-
-  <tfoot>
-    <tr>
-      <td colspan="3">Total Movies: <%= @movies.count %></td>
-    </tr>
-  </tfoot>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td><%= movie.title %></td>
+        <td><%= movie.rating %></td>
+        <td><%= movie.release_date %></td>
+        <td>
+          <%= link_to 'Show', movie_path(movie), class: 'btn' %>
+          <%= link_to 'Edit', edit_movie_path(movie), class: 'btn' %>
+          <%= link_to 'Delete', movie_path(movie), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-delete' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
-
-<%= link_to 'Add New Movie', new_movie_path %>
