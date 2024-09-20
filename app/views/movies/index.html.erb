@@ -1,24 +1,35 @@
+<h1>All Movies</h1>
+
 <table>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Rating</th>
-      <th>Release Date</th>
+      <th>
+        <%= link_to 'Title', movies_path(sort: 'title', direction: toggle_direction('title')) %>
+      </th>
+      <th>
+        <%= link_to 'Rating', movies_path(sort: 'rating', direction: toggle_direction('rating')) %>
+      </th>
+      <th>
+        <%= link_to 'Release Date', movies_path(sort: 'release_date', direction: toggle_direction('release_date')) %>
+      </th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <% @movies.each do |movie| %>
       <tr>
-        <td><%= movie.title %></td>
+        <td><%= link_to movie.title, movie_path(movie) %></td>
         <td><%= movie.rating %></td>
         <td><%= movie.release_date %></td>
         <td>
-          <%= link_to 'Show', movie_path(movie), class: 'btn' %>
-          <%= link_to 'Edit', edit_movie_path(movie), class: 'btn' %>
-          <%= link_to 'Delete', movie_path(movie), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-delete' %>
+          <%= link_to 'Edit', edit_movie_path(movie), class: 'btn' %> |
+          <%= form_with model: movie, method: :delete, local: true do %>
+            <%= submit_tag 'Delete', data: { confirm: 'Are you sure?' }, class: 'btn-delete' %>
+          <% end %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= link_to 'Add New Movie', new_movie_path %>

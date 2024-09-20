@@ -5,7 +5,7 @@ class MoviesController < ApplicationController
   def index
     sort_column = params[:sort] || 'title'
     sort_direction = params[:direction] || 'asc'
-  
+
     @movies = Movie.order("#{sort_column} #{sort_direction}")
   end
 
