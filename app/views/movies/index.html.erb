@@ -3,9 +3,15 @@
 <table>
   <thead>
     <tr>
-      <th><%= sortable "title", "Title" %></th>
-      <th><%= sortable "rating", "Rating" %></th>
-      <th><%= sortable "release_date", "Release Date" %></th>
+      <th class="<%= sort_class('title') %>">
+        <%= sortable "title", "Title" %> <%= sort_indicator('title') %>
+      </th>
+      <th class="<%= sort_class('rating') %>">
+        <%= sortable "rating", "Rating" %> <%= sort_indicator('rating') %>
+      </th>
+      <th class="<%= sort_class('release_date') %>">
+        <%= sortable "release_date", "Release Date" %> <%= sort_indicator('release_date') %>
+      </th>
     </tr>
   </thead>
   <tbody>
