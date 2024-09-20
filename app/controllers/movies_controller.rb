@@ -11,7 +11,9 @@ class MoviesController < ApplicationController
 
   # GET /movies/1 or /movies/1.json
   def show
+    @movie = Movie.find(params[:id])
   end
+  
 
   # GET /movies/new
   def new
@@ -20,7 +22,18 @@ class MoviesController < ApplicationController
 
   # GET /movies/1/edit
   def edit
+    @movie = Movie.find(params[:id])
   end
+  
+  def update
+    @movie = Movie.find(params[:id])
+    if @movie.update(movie_params)
+      redirect_to @movie, notice: 'Movie was successfully updated.'
+    else
+      render :edit
+    end
+  end
+  
 
   # POST /movies or /movies.json
   def create
@@ -37,28 +50,14 @@ class MoviesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /movies/1 or /movies/1.json
-  def update
-    respond_to do |format|
-      if @movie.update(movie_params)
-        format.html { redirect_to @movie, notice: "Movie was successfully updated." }
-        format.json { render :show, status: :ok, location: @movie }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @movie.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
   # DELETE /movies/1 or /movies/1.json
   def destroy
-    @movie.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to movies_path, status: :see_other, notice: "Movie was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    @movie = Movie.find(params[:id])
+    @movie.destroy
+    redirect_to movies_path, notice: 'Movie was successfully deleted.'
   end
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.

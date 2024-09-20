@@ -1,12 +1,26 @@
-<% content_for :title, "Editing movie" %>
+<h1>Edit <%= @movie.title %></h1>
 
-<h1>Editing movie</h1>
+<div class="form-container">
+  <%= form_with(model: @movie, local: true) do |form| %>
+    <div>
+      <%= form.label :title %><br>
+      <%= form.text_field :title %>
+    </div>
 
-<%= render "form", movie: @movie %>
+    <div>
+      <%= form.label :rating %><br>
+      <%= form.select :rating, Movie::RATINGS %>
+    </div>
 
-<br>
+    <div>
+      <%= form.label :release_date %><br>
+      <%= form.date_select :release_date %>
+    </div>
 
-<div>
-  <%= link_to "Show this movie", @movie %> |
-  <%= link_to "Back to movies", movies_path %>
+    <div>
+      <%= form.submit 'Update Movie', class: 'btn' %>
+    </div>
+  <% end %>
 </div>
+
+<%= link_to 'Back to Movie', movie_path(@movie), class: 'btn' %>

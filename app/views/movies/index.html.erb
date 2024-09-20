@@ -15,14 +15,18 @@
     </tr>
   </thead>
   <tbody>
-    <% @movies.each do |movie| %>
-      <tr>
-        <td><%= movie.title %></td>
-        <td><%= movie.rating %></td>
-        <td><%= movie.release_date %></td>
-      </tr>
-    <% end %>
-  </tbody>
+  <% @movies.each do |movie| %>
+    <tr>
+      <td><%= link_to movie.title, movie_path(movie) %></td>
+      <td><%= movie.rating %></td>
+      <td><%= movie.release_date %></td>
+      <td><%= link_to 'Edit', edit_movie_path(movie), class: 'btn' %> | 
+          <%= link_to 'Delete', movie, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-delete' %>
+      </td>
+    </tr>
+  <% end %>
+</tbody>
+
   <tfoot>
     <tr>
       <td colspan="3">Total Movies: <%= @movies.count %></td>

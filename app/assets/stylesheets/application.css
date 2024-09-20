@@ -60,4 +60,26 @@ table {
   a:hover {
     text-decoration: underline;
   }
+  .btn {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #0b3d91;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    margin-right: 5px;
+    text-decoration: none;
+  }
+  
+  .btn:hover {
+    background-color: #092d70;
+  }
+  
+  .btn-delete {
+    background-color: #d9534f;
+  }
+  
+  .btn-delete:hover {
+    background-color: #c9302c;
+  }
   
